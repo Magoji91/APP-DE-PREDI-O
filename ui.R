@@ -34,16 +34,10 @@ shinyUI(fluidPage(
                         tabPanel("Predictions",
                         
             wellPanel(
-                
+                              
                 # Link to report
-                helpText(a('More information on the project',
-                           href='http://dataexcursions.com/Word-Prediction-Shiny-App', 
-                           target = '_blank')
-                ),
-                
-                # Link to repo
                 helpText(a('Link to the GitHub Repository',
-                           href='https://github.com/arttuK/word-prediction/tree/master/shiny',
+                           href='https://github.com/Magoji91/APP-DE-PREDI-O',
                            target = '_blank')
                 ),
                 
