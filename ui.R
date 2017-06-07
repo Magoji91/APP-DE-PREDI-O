@@ -4,7 +4,7 @@ library(shinythemes)
 
 # Define the app ####
 
-shinyUI(fluidPage(
+ui <-shinyUI(fluidPage(
     
     # Theme
     theme = shinytheme("spacelab"),
