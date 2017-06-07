@@ -4,7 +4,7 @@ library(wordcloud)
 source("MODEL.R")
 
 # Define server logic required to output a table and a barchart
-shinyServer(function(input, output) {
+server <- shinyServer(function(input, output) {
     
  output$table<-renderDataTable({
      par_sen<-input$text
