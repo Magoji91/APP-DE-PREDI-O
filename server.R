@@ -1,7 +1,7 @@
 library(shiny)
 library(wordcloud)
 
-source("MODEL")
+source("MODEL.R")
 
 # Define server logic required to output a table and a barchart
 shinyServer(function(input, output) {
