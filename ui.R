@@ -18,7 +18,7 @@ shinyUI(fluidPage(
         sidebarPanel(
             
             # Text input
-            textInput("text", label = ('Please enter a partial sentence ideally two words or more separated by a space'), value = 'the default value'),
+            textInput("text", label = ('Write a partial sentence with two or more words separated by a space'), value = 'the default value'),
             
             # Submit button for making the prediction
             submitButton("Submit"),
@@ -59,11 +59,10 @@ shinyUI(fluidPage(
             )),
               tabPanel("Instructions",
                h1("Using the App"),
-                HTML("(1.) The app predicts the next word in a sentence/partial sentence using a stupid backoff based algorithm <br>
-                     (2.) To predict the next word type a partial sentence of 2 or more words separated by a space and hit submit <br> 
-                     (3.) A table witht he predicted words and the back-off algorithm score is presented in sidebar panel <br>
-                     (4.) In the main panel a bar chart of the top 5 predicted words and the scores is presented along with a wordcloud of the top 100 predicted words <br>
-                     (5.) For details of the algorithm as well as the R code please click on the hyperlinks in the word prediction tab <br>
+                HTML("(A.)The application uses an algorithm based on the stupid backoff in order to predict the sequential word in a given sentence or sentence.
+                     (B.) To predict use of the application simply write a partial sentence of 2 or more words separated by a space and click on the option send.
+                     (C.) A table with the possible predicted words and the punctuation of the backoff algorithm will appear in the sidebar.
+                     (D.) The main panel will show a bar chart of the 5 words with the highest possible incidence, as well as the 100 main words predicted in a wordcloud.
                      "))
          
        
