@@ -1,0 +1,103 @@
+setwd("C:/Users/smsanda/Documents/en_US")
+
+news <- readLines(file("en_US.news.txt"))
+blog <- readLines(file("en_US.blogs.txt"))
+twit <- readLines(file("en_US.twitter.txt"))
+
+print(paste("News Data Length = ", length(news),
+            ", News Blog Length = ", length(blog),
+            ", News twitter Length = ", length(twit)
+            ))
+            
+####Functions to remove special characters
+detectNonAsciiChar <- function(x) iconv(x, from="UTF-8", to="ASCII",sub="X")##detects a nonASCII character and substitutesit with "X"
+removeNonAsciiWord <- function(x) gsub("[a-z]*X+[a-z]*", " ", x)##removes the detected nonASCII characters
+removeHTTPS <- function(x) gsub("https://(.*)[.][a-z]+|https://[a-z]+", " ", x)
+removeHTTP  <- function(x) gsub("http://(.*)[.][a-z]+|https://[a-z]+", " ", x)
+removeFTP <- function(x) gsub("ftp://(.*)[.][a-z]+|https://[a-z]+", " ", x)
+removeWWW <- function(x) gsub("www(.*)[.][a-z]+|www.", " ", x)
+removeHashTag <- function(x) gsub("#[a-z0-9]+", " ", x)
+removeTwitterRT <- function(x) gsub("^rt |^rt:", " ", x)
+removeCharRepetition <- function(x) {
+    a <- gsub("[a-z]*aaa[a-z]*", " ", x)
+    a <- gsub("[a-z]*bbb[a-z]*", " ", a)
+    a <- gsub("[a-z]*ccc[a-z]*", " ", a)
+    a <- gsub("[a-z]*ddd[a-z]*", " ", a)
+    a <- gsub("[a-z]*eee[a-z]*", " ", a)
+    a <- gsub("[a-z]*fff[a-z]*", " ", a)
+    a <- gsub("[a-z]*ggg[a-z]*", " ", a)
+    a <- gsub("[a-z]*hhh[a-z]*", " ", a)
+    a <- gsub("[a-z]*iii[a-z]*", " ", a)
+    a <- gsub("[a-z]*jjj[a-z]*", " ", a)
+    a <- gsub("[a-z]*kkk[a-z]*", " ", a)
+    a <- gsub("[a-z]*lll[a-z]*", " ", a)
+    a <- gsub("[a-z]*mmm[a-z]*", " ", a)
+    a <- gsub("[a-z]*nnn[a-z]*", " ", a)
+    a <- gsub("[a-z]*ooo[a-z]*", " ", a)
+    a <- gsub("[a-z]*ppp[a-z]*", " ", a)
+    a <- gsub("[a-z]*qqq[a-z]*", " ", a)
+    a <- gsub("[a-z]*rrr[a-z]*", " ", a)
+    a <- gsub("[a-z]*sss[a-z]*", " ", a)
+    a <- gsub("[a-z]*ttt[a-z]*", " ", a)
+    a <- gsub("[a-z]*uuu[a-z]*", " ", a)
+    a <- gsub("[a-z]*vvv[a-z]*", " ", a)
+    a <- gsub("[a-z]*www[a-z]*", " ", a)
+    a <- gsub("[a-z]*xxx[a-z]*", " ", a)
+    a <- gsub("[a-z]*yyy[a-z]*", " ", a)
+    gsub("[a-z]*zzz[a-z]*", " ", a)
+}
+
+# Remove large files to clean up memory
+rm (blog.words)
+rm(news.words)
+rm(twit.words)
+
+rm(blog)
+rm(news)
+rm(twit)
+
+##Clean the combined file
+library(tm)
+merged <- paste(news[1:5000], blog[1:5000], twit[1:5000])
+corpus <- VCorpus(VectorSource(merged))
+corpus<- tm_map(corpus, removeNumbers)
+corpus <- tm_map(corpus, content_transformer(tolower))
+corpus <- tm_map(corpus, content_transformer(detectNonAsciiChar))
+corpus <- tm_map(corpus, content_transformer(removeNonAsciiWord))
+corpus<- tm_map(corpus, content_transformer(removeHTTPS))
+corpus <- tm_map(corpus, content_transformer(removeHTTP))
+corpus <- tm_map(corpus, content_transformer(removeFTP))
+corpus <- tm_map(corpus, content_transformer(removeWWW))
+corpus <- tm_map(corpus, content_transformer(removeHashTag))
+corpus <- tm_map(corpus, content_transformer(removeTwitterRT))
+corpus<- tm_map(corpus, content_transformer(removeCharRepetition))
+corpus <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus , stripWhitespace)
+corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+
+##Load list of profanity
+badWordsURL<-"https://raw.githubusercontent.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en"
+download.file(badWordsURL,destfile="badWords.txt")
+badWords<-read.csv("badWords.txt",header=FALSE,sep="\n",strip.white=TRUE)
+corpus<-tm_map(corpus,removeWords,badWords[,1])       
+
+library(RWeka)
+corpusDf <-data.frame(text=unlist(sapply(corpus, 
+                                         `[`, "content")), stringsAsFactors=F)
+
+findNGrams <- function(corp, grams) {
+ngram <- NGramTokenizer(corp, Weka_control(min = grams, max = grams,
+                                             delimiters = " \\r\\n\\t.,;:\"()?!"))
+ngrama <- data.frame(table(ngram))
+ngramb <- ngrama[order(ngrama$Freq,decreasing = TRUE),][1:100,]
+colnames(ngramb) <- c("String","Count")
+ngramb
+}
+
+#1-5 grams  tokenize
+UniGrams <- findNGrams(corpusDf,1)
+TwoGrams <- findNGrams(corpusDf,2)
+ThreeGrams <- findNGrams(corpusDf,3)
+FourGrams <- findNGrams(corpusDf,4)
+FourGrams <- findNGrams(corpusDf,5)
