@@ -1,3 +1,5 @@
+###This script defines the stupid back-off algorithm and function for predicting the next word in a sentence############
+
 #Load the required libraries###
 library(data.table)
 library(stringr)
@@ -11,7 +13,7 @@ library(ggplot2)
 # the stupid back-off algorithm gives a score to the frequencies of words or n-grams and develop relative scores####
 
 
-#setwd("C:/Users/smsanda/Shiny App")
+#setwd("C:/Modeling and Simulation/DataScienceCapstone/Shiny App")
 
 # read in the unigram, bigram, trigram, quadragram and pentagram files
 unigram<-fread("unigrams.csv")
