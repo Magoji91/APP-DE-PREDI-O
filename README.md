@@ -10,6 +10,18 @@ How to predict?
 ========================================================
 There are several models of creating an n-gram prediction application, like N-grams with the modified Kneser-Ney smoothing, normalized stupid backoff, structers maximum entrophy language model whti hierarchical softmax, binary maximum entropy language model, neural network based, recurrent neural network language model, etc. In front of the models mentioned above, I prefer to use a model with a simpler algorithm than a complex one, such as Stupid Backoff because in this n-gram model, if the N-gram we need has zero counts, we go back to the program (N-1) until there is a correct probability distribution. For example: if we use the trigram and it is not enough to present a correct probability distribution, the program will use the bigram, and if that is insufficient the unigram. In other words, we only "back off" to a lower-order N-gram if we have zero evidence for a higher-order N-gram.
 
+The Predict Shiny App
+========================================================
+The application uses an algorithm based on the stupid backoff in order to predict the sequential word in a given sentence.
+
+Description: #To predict use of the application simply write a partial sentence of 2 or more words separated by a space and click on the option send. #A table with the possible predicted words and the punctuation of the backoff algorithm will appear in the sidebar. #The main panel will show a bar chart of the 5 words with the highest possible incidence, as well as the 100 main words predicted in a wordcloud.
+
+Conclusion
+
+The biggest challenge in creating the word prediction application was the processing time of the files, due to the size of the files, so it is necessary to choose a small sample for the development of the application in order to facilitate its homologation and later production. In addition, I report that the creation of this App was only possible by reading the article on N-grams in the work Speech and Language Processing by Daniel Jurafsky & James H. Martin (https://lagunita.stanford.edu/c4x/Engineering/ CS-224N / asset / slp4.pdf) and the application analysis present in the aamrite repository (https://github.com/aamrite/PredictNextWord).
+
+
+
 
 Conclusion
 ========================================================
