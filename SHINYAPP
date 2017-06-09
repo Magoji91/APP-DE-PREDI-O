@@ -19,7 +19,7 @@ library(tm)
 library(ggplot2)
 
 
-setwd("C:/Users/User/Documents/PREDIWO")
+setwd("C:/Users/smsanda/Documents/PREDIWO")
 
 # read in the unigram, bigram, trigram, quadragram and pentagram files
 unigram<-fread("unigrams.csv")
@@ -134,7 +134,7 @@ ui <- shinyUI(fluidPage(
   theme = shinytheme("spacelab"),
   
   # Application title
-  titlePanel("Next Word Predictor"),
+  titlePanel("Word Premonitor"),
   
   
   
@@ -161,7 +161,7 @@ ui <- shinyUI(fluidPage(
                            
                            # Link to report
                            helpText(a('More information on the project',
-                                      href='http://rpubs.com/MAGOJI/274489', 
+                                      href='http://rpubs.com/MAGOJI/283553', 
                                       target = '_blank')
                            ),
                            
@@ -194,10 +194,10 @@ ui <- shinyUI(fluidPage(
                 
                          ) )
     ))
-  
+
 
 # Define application ####
-    
+
 server <- shinyServer(function(input, output) {
   
   output$table<-renderDataTable({
@@ -245,4 +245,3 @@ server <- shinyServer(function(input, output) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
