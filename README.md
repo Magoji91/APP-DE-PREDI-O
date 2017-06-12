@@ -19,7 +19,7 @@ The Word Premonitor - Shiny App
 ========================================================
 ![alt text](shiny.png)
 
-Conclusion
+Observation
 ========================================================
 The biggest challenge in creating the word prediction application was the processing time of the files, due to the size of the files, so it is necessary to choose a small sample for the development of the application in order to facilitate its homologation and later production. In addition, I report that the creation of this App was only possible by reading the article on N-grams in the work Speech and Language Processing by Daniel Jurafsky & James H. Martin and the application analysis present in the aamrite repository (https://github.com/aamrite/PredictNextWord).
 
