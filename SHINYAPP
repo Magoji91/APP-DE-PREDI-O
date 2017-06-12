@@ -161,7 +161,7 @@ ui <- shinyUI(fluidPage(
                            
                            # Link to report
                            helpText(a('More information on the project',
-                                      href='http://rpubs.com/MAGOJI/283553', 
+                                      href='http://rpubs.com/MAGOJI/284176', 
                                       target = '_blank')
                            ),
                            
@@ -183,7 +183,7 @@ ui <- shinyUI(fluidPage(
                          )),
                 tabPanel("Instructions",
                          h1("Using the App"),
-                         HTML("(1.) The application uses an algorithm based on the stupid backoff in order to predict the sequential word in a given sentence or sentence <br>
+                         HTML("(1.) The application uses an algorithm based on the stupid backoff in order to predict the sequential word in a given sentence<br>
                               (2.) To predict use of the application simply write a partial sentence of 2 or more words separated by a space and click on the option send <br> 
                               (3.) A table with the possible predicted words and the punctuation of the backoff algorithm will appear in the sidebar <br>
                               (4.)  The main panel will show a bar chart of the 5 words with the highest possible incidence, as well as the 100 main words predicted in a wordcloud <br>
