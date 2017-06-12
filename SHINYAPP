@@ -11,15 +11,9 @@ library(shiny)
 library(shinythemes)
 library(wordcloud)
 
-library(data.table)
-library(stringr)
-library(tidytext)
-library(dplyr)
-library(tm)
-library(ggplot2)
+setwd("C:/Users/User/Documents/PREDIWO")
 
-
-setwd("C:/Users/smsanda/Documents/PREDIWO")
+source("MODEL.R")
 
 # read in the unigram, bigram, trigram, quadragram and pentagram files
 unigram<-fread("unigrams.csv")
