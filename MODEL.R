@@ -13,7 +13,7 @@ library(ggplot2)
 # the stupid back-off algorithm gives a score to the frequencies of words or n-grams and develop relative scores####
 
 
-#setwd("C:/Users/smsanda/Documents/Modeling and Simulation/DataScienceCapstone/Shiny App")
+#setwd("C:/Users/smsanda/Documents/PREDIWO")
 
 # read in the unigram, bigram, trigram, quadragram and pentagram files
 unigram<-fread("unigrams.csv")
