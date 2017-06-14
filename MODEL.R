@@ -106,8 +106,7 @@ stupid_backoff <- function (sentence) {
     return(list(name=names, count = res))##the output is a list of 2 vectors with names and counts
 }
 
-##########Define the predict word function which predicts the top 5 likely words and returns a dataframe with two columns
-########### of the predicted word and the score#########################################################################
+#Define the predict word function which predicts the top 5 likely words and returns a dataframe with two columns of the predicted word and the score#
 
 predict_word<-function(partial_sentence){
     ##clean the input sentence
