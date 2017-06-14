@@ -70,10 +70,9 @@ ui <- shinyUI(fluidPage(
 
 # Define application ####
 
+source('~/2017/ModelPredict/model.R')
 
 server <- shinyServer(function(input, output) {
-  
-source('MODEL.R', local=TRUE)  
   
   output$table<-renderDataTable({
     par_sen<-input$text
