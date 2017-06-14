@@ -1,7 +1,7 @@
 library(shiny)
 library(wordcloud)
 
-source("MODEL.R")
+source('~/2017/ModelPredict/model.R')
 
 # Define server logic required to output a table and a barchart
 server <- shinyServer(function(input, output) {
