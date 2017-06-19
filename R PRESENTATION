@@ -20,9 +20,11 @@ The stupid backoff Algorithm
 
 The App
 ========================================================
-![title](shiny.png)
-Instructions: To predict use simply write a partial sentence of 2 or more words separated by a space and click on the option submit then the app will show 5 words in the bar chart and 100 in a wordcloud.
 
+Instructions: To predict simply write a partial sentence of 2 or more words separated by a space and click in submit.
+
+![title](shiny.png)
+https://smsanda2017.shinyapps.io/modelpredict/
 
 Observation
 ========================================================
@@ -33,4 +35,4 @@ For more information about this app:
 
 https://github.com/Magoji91/APP-DE-PREDI-O
 
-http://rpubs.com/MAGOJI/284428
+
